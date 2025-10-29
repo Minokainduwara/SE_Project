@@ -1,13 +1,37 @@
 import express from "express";
-import { PORT } from "./config/env.js";
+import dotenv from "dotenv";
+import cors from "cors";
+import connectDB from "./config/db.js";
+
+dotenv.config();
+
+connectDB();
+
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Grocery System API is Running');
-});    
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT, () =>{
-    console.log(`Grocery App API is running on : http://localhost:${ PORT }`);
+// Example route
+app.get("/", (req, res) => {
+  res.send("Grocery System API is running...");
 });
 
-export default app;
+// Admin route (example placeholder)
+app.get("/api/admin", (req, res) => {
+  res.json({ message: "Admin route" });
+});
+
+// Seller route (example placeholder)
+app.get("/api/seller", (req, res) => {
+  res.json({ message: "Seller route" });
+});
+
+
+const PORT = process.env.PORT || 5000;
+
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
