@@ -10,22 +10,18 @@ export const protect = async (req, res, next) => {
       req.user = await User.findById(decoded.id).select("-password");
       next();
     } catch (error) {
-      res.status(401).json({ message: "Not authorized, token failed" });
+      res.status(401).json({ message: "Not authorized, invalid token" });
     }
   }
-
-  if (!token) {
-    res.status(401).json({ message: "Not authorized, no token" });
-  }
+  if (!token) res.status(401).json({ message: "Not authorized, no token" });
 };
 
-// Role-based access control
 export const adminOnly = (req, res, next) => {
   if (req.user && req.user.role === "admin") next();
-  else res.status(403).json({ message: "Access denied. Admins only." });
+  else res.status(403).json({ message: "Admin access only" });
 };
 
-export const sellerOnly = (req, res, next) => {
-  if (req.user && req.user.role === "seller") next();
-  else res.status(403).json({ message: "Access denied. Sellers only." });
+export const sellerOrAdmin = (req, res, next) => {
+  if (req.user && (req.user.role === "seller" || req.user.role === "admin")) next();
+  else res.status(403).json({ message: "Only sellers or admins can perform this action" });
 };
