@@ -1,42 +1,33 @@
-import './index.css'
-import AboutUsPage from './pages/AboutUs'
-import AddProduct from './pages/AddProduct'
-import AdminDashboard from './pages/AdminReport'
-import CartPage from './pages/CartPage'
-import CheckoutPage from './pages/CheckoutPage'
-import ContactUs from './pages/ContactUs'
-import Homepage from './pages/Homepage'
-import LogInPage from './pages/LogInPage'
-import PaymentPage from './pages/PaymentPage'
-import ProductsPage from './pages/Productpage'
-import Reports from './pages/Reports'
-import SignUpPage from './pages/Signup'
-import UserProfilePage from './pages/UserProfilePage'
-import Vendordashboard from './pages/Vendordashboard'
-import VendorProducts from './pages/VendorProducts'
-import VendorProfile from './pages/VendorProfile'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import SellerDashboard from "./pages/seller/SellerDashboard";
+import Cart from "./pages/customer/Cart";
+import Checkout from "./pages/customer/Checkout";
 
 function App() {
   return (
-    <>
-      {/*<ProductsPage />*/}
-      {/*<Homepage/>*/}
-      {/*<AboutUsPage/>*/}
-      {/*<ContactUs/>*/}
-      {/*<Vendordashboard/>*/}
-      {/*<VendorProfile/>*/}
-      {/*<VendorProducts/>*/}
-      {/*<AddProduct/>*/}
-      {/*<SignUpPage/>*/}
-      {/*<LogInPage/>*/}
-      {/*<AdminDashboard/>*/}
-      {/*<CartPage/>*/}
-      {/*<CheckoutPage/>*/}
-      {/*<PaymentPage/>*/}
-      {/*<UserProfilePage/>*/}
-      <Reports/>
-    </>
-  )
+    <Router>
+      <Routes>
+        {/* Common */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Customer */}
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+
+        {/* Seller */}
+        <Route path="/seller/dashboard" element={<SellerDashboard />} />
+
+        {/* Admin */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

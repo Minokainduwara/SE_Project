@@ -8,6 +8,7 @@ import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import userRoutes from "./routes/userRoutes.js"; // optional: add login/register support
+import payhereNotify from "./routes/payhereNotify.js";
 
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes); 
+app.use("/api/payments", payhereNotify);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
