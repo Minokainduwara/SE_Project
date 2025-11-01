@@ -52,7 +52,7 @@ export default function ProductsPage() {
     { id: 24, name: 'White rice', vendor: 'Grocery', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1k' },
     { id: 25, name: 'White suger', vendor: 'Grocery', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1k' },
 
-    { id: 26, name: 'Baygon insect', vendor: 'Household & Cleaning', price:5.6, rating: 4.6, stock: 5, image: '🧀', unit: '500g' },
+    { id: 26, name: 'Baygon insect', vendor: 'Household & Cleaning', price:1.6, rating: 4.6, stock: 5, image: '🍇', unit: '500g' },
     { id: 27, name: 'Bellose shampoo', vendor: 'Household & Cleaning', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '500g' },
     { id: 28, name: 'Beverly hills polo clud', vendor: 'Household & Cleaning', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '500g' },    
     { id: 29, name: 'Blacj Knight', vendor: 'Household & Cleaning', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1k' },
