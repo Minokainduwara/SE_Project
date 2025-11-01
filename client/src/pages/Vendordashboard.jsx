@@ -9,6 +9,7 @@ import StatsCards from "../components/vendor/StatsCards";
 import Sidebar from "../components/vendor/Sidebar";
 import HeaderTwo from "../components/vendor/HeaderTwo";
 import DashboardLayout from "../components/vendor/DashboardLayout";
+import Footer from "../components/homePage/footer";
 
 const Vendordashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -25,6 +26,7 @@ const Vendordashboard = () => {
   }, []);
 
  return (
+  <div className="min-h-screen bg-white">
   <div className="flex h-screen bg-gray-50 overflow-hidden">
     {/* Sidebar */}
     <Sidebar />
@@ -60,6 +62,8 @@ const Vendordashboard = () => {
         </div>
       </main>
     </div>
+  </div>
+  <Footer/>
   </div>
 );
 };

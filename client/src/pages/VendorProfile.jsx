@@ -5,7 +5,8 @@ import HeaderTwo from "../components/vendor/HeaderTwo";
 import BusinessInformation from "../components/vendor/BusinessInformation";
 import ImageUpload from "../components/vendor/ImageUpload";
 import ContactInformation from "../components/vendor/ContactInformation";
-import ActionButtons from "../components/vendor/ActionButtons";
+import Footer from "../components/homePage/footer";
+
 
 const VendorProfile = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -22,6 +23,7 @@ const VendorProfile = () => {
   }, []);
 
   return (
+    <div className="min-h-screen bg-white">
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       {/* Sidebar */}
       <Sidebar />
@@ -38,12 +40,10 @@ const VendorProfile = () => {
           <ImageUpload/>
           <BusinessInformation stats={dashboardData.stats} />
 
-          {/* Bottom Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <ActionButtons inventory={dashboardData.inventory} />
-          </div>
         </main>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

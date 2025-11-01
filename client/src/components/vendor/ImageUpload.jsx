@@ -16,7 +16,7 @@ const ImageUpload = ({ logo, handleLogoUpload }) => {
     <div className="bg-white rounded-lg p-6 shadow-sm">
       
       {/* Section Title */}
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">Image</h2>
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800">Profile Picture</h2>
       
       {/* Upload Container */}
       <div className="flex flex-col items-center">
