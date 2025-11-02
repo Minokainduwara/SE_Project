@@ -1,5 +1,7 @@
 import axios from "axios";
 
-export default axios.create({
-  baseURL: "http://localhost:5050/api", 
+const API = axios.create({
+  baseURL: "http://localhost:5050/api", // adjust if your backend runs on another port
 });
+
+export default API;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import API from "../api";
+import API from "../api/axios";  
 
 const Cart = () => {
   const [cart, setCart] = useState({ items: [], totalPrice: 0 });
@@ -13,6 +13,7 @@ const Cart = () => {
     });
     setCart(data);
   };
+
 
   const removeItem = async (id) => {
     await API.delete(`/cart/${id}`, {

@@ -4,8 +4,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import SellerDashboard from "./pages/seller/SellerDashboard";
-import Cart from "./pages/customer/Cart";
-import Checkout from "./pages/customer/Checkout";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
