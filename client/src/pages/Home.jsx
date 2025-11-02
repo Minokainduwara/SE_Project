@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import api from "../api/axios";
 import HeroSection from "../components/HeroSection";
 import DeliveryBanner from "../components/DeliveryBanner";
+import TopVendors from "../components/TopVendors";
+import Navbar from "../components/nav";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -19,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+    < Navbar />
     < HeroSection />
     < DeliveryBanner/>
     <div className="p-6">
@@ -38,6 +42,9 @@ const Home = () => {
         ))}
       </div>
     </div>
+    < TopVendors/>
+    < Footer/>
+    
     </>
   );
 };
