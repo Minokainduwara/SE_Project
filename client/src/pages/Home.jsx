@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/axios";
+import HeroSection from "../components/HeroSection";
+import DeliveryBanner from "../components/DeliveryBanner";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +18,9 @@ const Home = () => {
   };
 
   return (
+    <>
+    < HeroSection />
+    < DeliveryBanner/>
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-4">🛒 Grocery Store</h1>
       <div className="grid grid-cols-3 gap-4">
@@ -33,6 +38,7 @@ const Home = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
