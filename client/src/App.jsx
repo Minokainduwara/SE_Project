@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       {/*<ProductsPage />*/}
-      {/*<Homepage/>*/}
+      {<Homepage/>}
       {/*<AboutUsPage/>*/}
       {/*<ContactUs/>*/}
       {/*<Vendordashboard/>*/}
@@ -34,7 +34,7 @@ function App() {
       {/*<CheckoutPage/>*/}
       {/*<PaymentPage/>*/}
       {/*<UserProfilePage/>*/}
-      <Reports/>
+      {/*<Reports/>*/}
     </>
   )
 }
