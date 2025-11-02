@@ -23,15 +23,15 @@ export default function ProductsPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const products = [
-    { id: 1, name: 'Little lion Cake', vendor: 'Bakery&Snacks', price:5.0, rating: 4.5, stock: 10, image:'🥦', unit: '550g' },
-    { id: 2, name: 'Mr pop Classic  ', vendor: 'Bakery&Snacks', price: 5.0, rating: 4.7, stock: 15, image: '🍌', unit: '30g' },
-    { id: 3, name: 'Rambo tetos', vendor: 'Bakery&Snacks', price: 5.5, rating: 4.2, stock: 4, image: '🥕', unit: '30g' },
+    { id: 1, name: 'Little lion Cake', vendor: 'Bakery&Snacks', price:3.1, rating: 4.5, stock: 10, image:'/assets/images/ProductImags/Bakery & Snacks/little lion 500.jpg', unit: '550g' },
+    { id: 2, name: 'Mr pop Classic  ', vendor: 'Bakery&Snacks', price: 3.1, rating: 4.7, stock: 15, image: '/assets/images/ProductImags/Bakery & Snacks/mr pop classic 50.jpg', unit: '30g' },
+    { id: 3, name: 'Rambo tetos', vendor: 'Bakery&Snacks', price: 5.5, rating: 4.2, stock: 4, image: '/assets/images/ProductImags/Bakery & Snacks/rambo tetos 85.jpg', unit: '30g' },
 
-    { id: 4, name: '7 up', vendor: 'Beverages', price: 1.5, rating: 4.8, stock: 20, image: '🥦', unit: '4000ml' },
-    { id: 5, name: 'Ahmad tea bopf', vendor: 'Beverages', price: 3.5, rating: 4.9, stock: 20, image: '🥛', unit: '400g' },
-    { id: 6, name: 'ahmad tea flavoured chai', vendor: 'Beverages', price:5.6, rating: 4.6, stock: 5, image: '🧀', unit: '500g' },
-    { id: 7, name: 'Ambewela fresh milk', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1l' },
-    { id: 8, name: 'Ancor full cream powder', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1k' },    
+    { id: 4, name: '7 up', vendor: 'Beverages', price: 1.5, rating: 4.8, stock: 20, image: '/assets/images/ProductImags/Beverages/7 up 400.jpg', unit: '4000ml' },
+    { id: 5, name: 'Ahmad tea bopf', vendor: 'Beverages', price: 3.5, rating: 4.9, stock: 20, image: '/assets/images/ProductImags/Beverages/ahmad tea bopf 1139.jpg', unit: '400g' },
+    { id: 6, name: 'ahmad tea flavoured chai', vendor: 'Beverages', price:5.6, rating: 4.6, stock: 5, image: '/assets/images/ProductImags/Beverages/ahmad tea flavoured chai 671.jpg', unit: '500g' },
+    { id: 7, name: 'Ambewela fresh milk', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '', unit: '1l' },
+    { id: 8, name: 'Ancor full cream powder', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '/assets/images/ProductImags/Beverages/ancor hot chocolate 400g .jpg', unit: '1k' },    
     { id: 9, name: 'Elephant house ginger beer', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '40ml' },
     { id: 10, name: 'Ambewela fresh milk', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1l' },
     { id: 11, name: 'Ambewela fresh milk', vendor: 'Beverages', price:6.0, rating: 4.6, stock: 5, image: '🍇', unit: '1l' },
