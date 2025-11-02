@@ -1,33 +1,59 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import SellerDashboard from "./pages/seller/SellerDashboard";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Login from './components/Login';
+import Register from './pages/Register';
+import Cart from './components/Cart';
+import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Common */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
-        {/* Customer */}
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-
-        {/* Seller */}
-        <Route path="/seller/dashboard" element={<SellerDashboard />} />
-
-        {/* Admin */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div style={styles.app}>
+          <Navbar />
+          <main style={styles.main}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/orders" element={<Orders />} />
+            </Routes>
+          </main>
+          <footer style={styles.footer}>
+            &copy; 2024 Grocery Store. All rights reserved.
+          </footer>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
+
+const styles = {
+  app: {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#f8f9fa'
+  },
+  main: {
+    flex: 1,
+    padding: '1rem'
+  },
+  footer: {
+    backgroundColor: '#2c3e50',
+    color: 'white',
+    textAlign: 'center',
+    padding: '2rem',
+    marginTop: '3rem'
+  }
+};
 
 export default App;

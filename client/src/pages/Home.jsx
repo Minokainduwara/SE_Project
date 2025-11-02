@@ -1,52 +1,86 @@
-import React, { useState, useEffect } from "react";
-import api from "../api/axios";
-import HeroSection from "../components/HeroSection";
-import DeliveryBanner from "../components/DeliveryBanner";
-import TopVendors from "../components/TopVendors";
-import Navbar from "../components/nav";
-import Footer from "../components/Footer";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    api.get("/products").then(res => setProducts(res.data));
-  }, []);
-
-  const addToCart = (product) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${product.name} added to cart`);
-  };
-
   return (
-    <>
-    < Navbar />
-    < HeroSection />
-    < DeliveryBanner/>
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">🛒 Grocery Store</h1>
-      <div className="grid grid-cols-3 gap-4">
-        {products.map((p) => (
-          <div key={p._id} className="border p-4 rounded">
-            <h3 className="font-bold">{p.name}</h3>
-            <p>Rs.{p.price}</p>
-            <button
-              className="bg-blue-600 text-white px-3 py-1 mt-2 rounded"
-              onClick={() => addToCart(p)}
-            >
-              Add to Cart
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
-    < TopVendors/>
-    < Footer/>
+        <>
+      
+        Welcome to Fresh Grocery Store
+        
+          Fresh vegetables, fruits, and daily essentials delivered to your doorstep
+        
+        
+          Shop Now
+        
+      
+
+      
+        
+          🥬
+          Fresh Products
+          Daily fresh vegetables and fruits
+        
+        
+          🚚
+          Fast Delivery
+          Get your order delivered in 2-3 hours
+        
+        
+          💳
+          Secure Payment
+          Multiple payment options available
+        
+      
+          </>
     
-    </>
   );
+};
+
+const styles = {
+  container: {
+    minHeight: '80vh'
+  },
+  hero: {
+    textAlign: 'center',
+    padding: '4rem 2rem',
+    backgroundColor: '#f8f9fa'
+  },
+  title: {
+    fontSize: '2.5rem',
+    color: '#2ecc71',
+    marginBottom: '1rem'
+  },
+  subtitle: {
+    fontSize: '1.2rem',
+    color: '#666',
+    marginBottom: '2rem'
+  },
+  button: {
+    display: 'inline-block',
+    backgroundColor: '#2ecc71',
+    color: 'white',
+    padding: '1rem 3rem',
+    borderRadius: '4px',
+    textDecoration: 'none',
+    fontSize: '1.1rem'
+  },
+  features: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '2rem',
+    maxWidth: '1200px',
+    margin: '4rem auto',
+    padding: '0 2rem'
+  },
+  feature: {
+    textAlign: 'center',
+    padding: '2rem'
+  },
+  icon: {
+    fontSize: '3rem',
+    display: 'block',
+    marginBottom: '1rem'
+  }
 };
 
 export default Home;
