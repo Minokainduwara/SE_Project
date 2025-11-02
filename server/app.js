@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 
 // Import Routes
+import cartRoutes from "./routes/cartRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
@@ -34,6 +35,8 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes); 
 app.use("/api/payments", payhereNotify);
 app.use("/api/auth", authRoutes);
+app.use("/api/cart", cartRoutes);
+
 
 
 // Start Server
