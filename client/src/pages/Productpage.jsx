@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import Header from '../components/Productpagecom/Header';
+import Header from '../pages/Header';
 import FiltersSidebar from '../components/Productpagecom/FiltersSidebar';
 import ProductGrid from '../components/Productpagecom/ProductGrid';
 import Pagination from '../components/Productpagecom/Pagination';
 import CartSidebar from '../components/Productpagecom/CartSidebar';
 import WishlistSidebar from '../components/Productpagecom/WishlistSidebar';
 import { Filter, Heart, ShoppingCart } from 'lucide-react';
+import Footer from '../pages/Footer';
 
 export default function ProductsPage() {
   const [cart, setCart] = useState([]);
@@ -21,10 +22,10 @@ export default function ProductsPage() {
 
   // sample products
   const products = [
-    { id: 1, name: 'Little lion Cake', vendor: 'Bakery&Snacks', price:350.00, rating: 4.5, stock: 10, image:'/assets/images/ProductImags/Bakery & Snacks/little lion 500.jpg', unit: '550g' },
-    { id: 2, name: 'Mr pop Classic  ', vendor: 'Bakery&Snacks', price: 45.00, rating: 4.7, stock: 15, image: '/assets/images/ProductImags/Bakery & Snacks/mr pop classic 50.jpg', unit: '30g' },
+    { id: 1, name: 'Little lion Cake', vendor: 'Bakery&Snacks', price: 350.00, rating: 4.5, stock: 10, image: '/assets/images/ProductImags/Bakery & Snacks/little lion 500.jpg', unit: '550g' },
+    { id: 2, name: 'Mr pop Classic', vendor: 'Bakery&Snacks', price: 45.00, rating: 4.7, stock: 15, image: '/assets/images/ProductImags/Bakery & Snacks/mr pop classic 50.jpg', unit: '30g' },
     { id: 3, name: 'Rambo tetos', vendor: 'Bakery&Snacks', price: 60.00, rating: 4.2, stock: 4, image: '/assets/images/ProductImags/Bakery & Snacks/rambo tetos 85.jpg', unit: '30g' },
-];
+  ];
 
   const vendors = ['All', ...new Set(products.map(p => p.vendor))];
 
@@ -82,11 +83,11 @@ export default function ProductsPage() {
   const paginatedProducts = filteredProducts.slice(startIdx, startIdx + 6);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      {/* Buttons moved below header */}
+      {/* Buttons below header */}
       <div className="bg-white shadow-md py-3 px-4 flex justify-end space-x-3 sticky top-[84px] z-30">
         <button
           onClick={() => setShowFilters(!showFilters)}
@@ -124,7 +125,7 @@ export default function ProductsPage() {
       </div>
 
       {/* Main Layout */}
-      <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-4 gap-6 flex-grow">
         {showFilters && (
           <div className="lg:hidden fixed inset-0 bg-black bg-opacity-40 z-40" onClick={() => setShowFilters(false)} />
         )}
@@ -159,8 +160,24 @@ export default function ProductsPage() {
       </div>
 
       {/* Cart + Wishlist Sidebars */}
-      <CartSidebar showCart={showCart} setShowCart={setShowCart} cart={cart} updateQuantity={updateQuantity} removeFromCart={removeFromCart} getTotalPrice={getTotalPrice} />
-      <WishlistSidebar showWishlist={showWishlist} setShowWishlist={setShowWishlist} wishlist={wishlist} addToCart={addToCart} removeFromWishlist={removeFromWishlist} />
+      <CartSidebar
+        showCart={showCart}
+        setShowCart={setShowCart}
+        cart={cart}
+        updateQuantity={updateQuantity}
+        removeFromCart={removeFromCart}
+        getTotalPrice={getTotalPrice}
+      />
+      <WishlistSidebar
+        showWishlist={showWishlist}
+        setShowWishlist={setShowWishlist}
+        wishlist={wishlist}
+        addToCart={addToCart}
+        removeFromWishlist={removeFromWishlist}
+      />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
