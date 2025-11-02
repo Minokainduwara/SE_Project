@@ -12,10 +12,10 @@ export default function Navbar() {
           <div className="flex items-center space-x-3">
             <div className="bg-white rounded-lg p-2">
               <div className="w-8 h-8 bg-green-600 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-xl">M</span>
+                <span className="text-white font-bold text-xl"><img src="/assets/images/logo.png"/></span>
               </div>
             </div>
-            <span className="text-white font-bold text-xl">MERN Shop</span>
+            <span className="text-white font-bold text-xl">Freshoria</span>
           </div>
 
           {/* Desktop Navigation */}
