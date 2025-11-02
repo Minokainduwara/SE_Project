@@ -15,15 +15,15 @@ export default function ProductsPage() {
   const [showWishlist, setShowWishlist] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState('name');
-  const [priceRange, setPriceRange] = useState([0, 100]);
+  const [priceRange, setPriceRange] = useState([0, 5000]);
   const [selectedVendor, setSelectedVendor] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
   // sample products
   const products = [
-    { id: 1, name: 'Little lion Cake', vendor: 'Bakery&Snacks', price:3.1, rating: 4.5, stock: 10, image:'/assets/images/ProductImags/Bakery & Snacks/little lion 500.jpg', unit: '550g' },
-    { id: 2, name: 'Mr pop Classic  ', vendor: 'Bakery&Snacks', price: 3.1, rating: 4.7, stock: 15, image: '/assets/images/ProductImags/Bakery & Snacks/mr pop classic 50.jpg', unit: '30g' },
-    { id: 3, name: 'Rambo tetos', vendor: 'Bakery&Snacks', price: 5.5, rating: 4.2, stock: 4, image: '/assets/images/ProductImags/Bakery & Snacks/rambo tetos 85.jpg', unit: '30g' },
+    { id: 1, name: 'Little lion Cake', vendor: 'Bakery&Snacks', price:350.00, rating: 4.5, stock: 10, image:'/assets/images/ProductImags/Bakery & Snacks/little lion 500.jpg', unit: '550g' },
+    { id: 2, name: 'Mr pop Classic  ', vendor: 'Bakery&Snacks', price: 45.00, rating: 4.7, stock: 15, image: '/assets/images/ProductImags/Bakery & Snacks/mr pop classic 50.jpg', unit: '30g' },
+    { id: 3, name: 'Rambo tetos', vendor: 'Bakery&Snacks', price: 60.00, rating: 4.2, stock: 4, image: '/assets/images/ProductImags/Bakery & Snacks/rambo tetos 85.jpg', unit: '30g' },
 ];
 
   const vendors = ['All', ...new Set(products.map(p => p.vendor))];

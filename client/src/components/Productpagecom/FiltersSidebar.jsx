@@ -27,7 +27,7 @@ export default function FiltersSidebar({
 
       <div className="mb-4">
         <label className="block text-sm font-semibold text-gray-700 mb-2">Price: Rs.{priceRange[0]} - Rs.{priceRange[1]}</label>
-        <input type="range" min="0" max="20" value={priceRange[1]} onChange={(e) => setPriceRange([0, parseInt(e.target.value)])} className="w-full" />
+        <input type="range" min="0" max="5000" value={priceRange[1]} onChange={(e) => setPriceRange([0, parseInt(e.target.value)])} className="w-full" />
       </div>
 
       <div className="mb-4">
