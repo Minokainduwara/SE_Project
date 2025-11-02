@@ -8,7 +8,7 @@ import * as XLSX from "xlsx";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 import ExcelJS from "exceljs";
-//import dummyData from "../../data/dummyData";
+import dummyData from "../../components/Reports_Page/data/dummyData";
 
 export default function Reports() {
     const [reportData, setReportData] = useState([]);
