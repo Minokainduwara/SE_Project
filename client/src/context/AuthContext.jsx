@@ -62,8 +62,9 @@ export const AuthProvider = ({ children }) => {
     const res = await axios.post('/auth/login', formData);
     setUser(res.data.user);
     await fetchCart();
+    return res.data;
   };
-
+  
   const logout = async () => {
     await axios.post('/auth/logout');
     setUser(null);

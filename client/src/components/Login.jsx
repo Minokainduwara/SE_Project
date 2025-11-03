@@ -25,9 +25,14 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // ✅ FIXED: pass full object instead of separate values
-      await login(formData);
-      navigate("/products");
+
+      const res = await login(formData); // your login function already returns the user data
+      if (res?.user?.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/products');
+      }
+
     } catch (error) {
       const message =
         error.response?.data?.message ||
