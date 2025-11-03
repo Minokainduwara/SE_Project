@@ -5,6 +5,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import path from "path";
+import { fileURLToPath } from "url";
+
+
 
 // Load environment variables
 dotenv.config();
@@ -77,6 +80,19 @@ app.use((err, req, res, next) => {
     stack: process.env.NODE_ENV === "production" ? null : err.stack,
   });
 });
+
+// Serve React build
+// Serve React build
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// Use regex instead of /* to avoid path-to-regexp error
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
 
 // ✅ Start the server
 const PORT = process.env.PORT || 5001;
