@@ -1,6 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -9,6 +9,18 @@ import Register from './pages/Register';
 import Cart from './components/Cart';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
+import AdminDashboard from './pages/AdminDashboard'; // 🧩 Add this page
+
+// 🔒 Admin route protection
+const ProtectedAdminRoute = ({ children }) => {
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) return <p>Loading...</p>;
+  if (!user) return <Navigate to="/login" />;
+  if (user.role !== 'admin') return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Access Denied. Admins only.</p>;
+
+  return children;
+};
 
 function App() {
   return (
@@ -25,8 +37,19 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/orders" element={<Orders />} />
+
+              {/* 🧩 Admin Dashboard (Protected) */}
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminDashboard />
+                  </ProtectedAdminRoute>
+                }
+              />
             </Routes>
           </main>
+
           <footer style={styles.footer}>
             &copy; 2024 Grocery Store. All rights reserved.
           </footer>
@@ -41,19 +64,19 @@ const styles = {
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#f8f9fa'
+    backgroundColor: '#f8f9fa',
   },
   main: {
     flex: 1,
-    padding: '1rem'
+    padding: '1rem',
   },
   footer: {
     backgroundColor: '#2c3e50',
     color: 'white',
     textAlign: 'center',
     padding: '2rem',
-    marginTop: '3rem'
-  }
+    marginTop: '3rem',
+  },
 };
 
 export default App;
