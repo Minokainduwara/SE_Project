@@ -5,7 +5,7 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 // Set default Axios configurations
-axios.defaults.baseURL = "http://localhost:5001";
+axios.defaults.baseURL = "http://localhost:5001/api";  // <-- Add /api here
 axios.defaults.withCredentials = true;
 
 export const AuthProvider = ({ children }) => {
@@ -27,10 +27,9 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const res = await axios.get('/api/auth/me');
+      const res = await axios.get('/auth/me');
       setUser(res.data.user);
     } catch (error) {
-      // Silently handle 401 - user is just not logged in
       if (error.response?.status === 401) {
         setUser(null);
       } else {
@@ -43,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get('/api/cart');
+      const res = await axios.get('/cart');
       setCart(res.data.cart || []);
     } catch (error) {
       if (error.response?.status !== 401) {
@@ -54,19 +53,19 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (formData) => {
-    const res = await axios.post('/api/auth/register', formData);
+    const res = await axios.post('/auth/register', formData);
     setUser(res.data.user);
     await fetchCart();
   };
 
   const login = async (formData) => {
-    const res = await axios.post('/api/auth/login', formData);
+    const res = await axios.post('/auth/login', formData);
     setUser(res.data.user);
     await fetchCart();
   };
 
   const logout = async () => {
-    await axios.post('/api/auth/logout');
+    await axios.post('/auth/logout');
     setUser(null);
     setCart([]);
   };
