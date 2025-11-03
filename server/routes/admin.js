@@ -4,6 +4,7 @@ import Product from "../models/Product.js";
 import Order from "../models/order.js";
 import multer from "multer";
 import { upload } from "../middleware/multer.js";
+import { adminMiddleware } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -31,6 +32,16 @@ router.put("/users/:id", isAdmin, async (req, res) => {
     await User.findByIdAndUpdate(req.params.id, { role });
     res.json({ message: "Role updated" });
 });
+
+router.delete("/users/:id", adminMiddleware, async (req, res) => {
+    try {
+      const user = await User.findByIdAndDelete(req.params.id);
+      if (!user) return res.status(404).json({ message: "User not found" });
+      res.json({ message: "User deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
 
 // 🛒 Products
 
@@ -89,5 +100,15 @@ router.get("/orders", isAdmin, async (req, res) => {
     const orders = await Order.find().populate("user", "email");
     res.json({ orders });
 });
+
+router.delete("/orders/:id", adminMiddleware, async (req, res) => {
+    try {
+      const order = await Order.findByIdAndDelete(req.params.id);
+      if (!order) return res.status(404).json({ message: "Order not found" });
+      res.json({ message: "Order deleted successfully" });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
 
 export default router;

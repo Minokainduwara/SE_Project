@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
+import OrderModal from "../components/OrderModal";
 
 
 
@@ -655,7 +656,6 @@ const OrderOverview = () => {
                                 <td>{new Date(o.createdAt).toLocaleDateString()}</td>
                                 <td>
                                     <div style={styles.actionButtons}>
-                                        <button style={styles.viewButton} onClick={() => alert("Implement modal to view details")}>View</button>
                                         <button style={styles.delete} onClick={() => deleteOrder(o._id)}>Delete</button>
                                     </div>
                                 </td>
