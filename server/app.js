@@ -4,6 +4,7 @@ import MongoStore from "connect-mongo";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import path from "path";
 
 // Load environment variables
 dotenv.config();
@@ -18,7 +19,7 @@ connectDB();
 const corsOptions = {
   origin: process.env.FRONTEND_URL || "http://localhost:5173", // Use environment variable for production
   credentials: true, // Allow cookies and credentials
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allowed HTTP methods
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Allowed HTTP methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
 };
 app.use(cors(corsOptions));
@@ -56,7 +57,7 @@ import cartRoutes from "./routes/cart.js";
 import orderRoutes from "./routes/orders.js";
 import adminRoutes from "./routes/admin.js";
 
-
+app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);

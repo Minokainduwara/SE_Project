@@ -48,7 +48,7 @@ const orderSchema = new mongoose.Schema({
   }
 });
 
-// ✅ Prevent OverwriteModelError during hot reloads or multiple imports
+// Prevent OverwriteModelError
 const Order = mongoose.models.Order || mongoose.model('Order', orderSchema);
 
 export default Order;

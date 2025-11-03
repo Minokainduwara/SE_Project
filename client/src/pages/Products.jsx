@@ -17,7 +17,7 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      let url = '/api/products?';
+      let url = '/products?';
       if (category && category !== 'All') url += `category=${category}&`;
       if (search) url += `search=${search}`;
       
