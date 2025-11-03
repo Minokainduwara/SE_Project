@@ -9,6 +9,8 @@ import Register from './pages/Register';
 import Cart from './components/Cart';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
+import AboutUsPage from './pages/AboutUsPage';
+import ContactUs from './pages/Contactus';
 
 function App() {
   return (
@@ -25,11 +27,11 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="/AboutUsPage" element={<AboutUsPage/>} />
+              <Route path="/ContactUS" element={<ContactUs/>}/>
             </Routes>
           </main>
-          <footer style={styles.footer}>
-            &copy; 2024 Grocery Store. All rights reserved.
-          </footer>
+          
         </div>
       </Router>
     </AuthProvider>
