@@ -1,8 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Create the AuthContext
 export const AuthContext = createContext();
 
+// Set default Axios configurations
+axios.defaults.baseURL = "http://localhost:5001";
 axios.defaults.withCredentials = true;
 
 export const AuthProvider = ({ children }) => {
@@ -12,15 +15,27 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkAuth();
-    fetchCart();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      fetchCart();
+    } else {
+      setCart([]);
+    }
+  }, [user]);
 
   const checkAuth = async () => {
     try {
       const res = await axios.get('/api/auth/me');
       setUser(res.data.user);
     } catch (error) {
-      setUser(null);
+      // Silently handle 401 - user is just not logged in
+      if (error.response?.status === 401) {
+        setUser(null);
+      } else {
+        console.error("Auth check error:", error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -29,23 +44,25 @@ export const AuthProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       const res = await axios.get('/api/cart');
-      setCart(res.data.cart);
+      setCart(res.data.cart || []);
     } catch (error) {
-      console.error('Error fetching cart');
+      if (error.response?.status !== 401) {
+        console.error("Failed to fetch cart:", error.message);
+      }
+      setCart([]);
     }
   };
 
-  const login = async (email, password) => {
-    const res = await axios.post('/api/auth/login', { email, password });
+  const register = async (formData) => {
+    const res = await axios.post('/api/auth/register', formData);
     setUser(res.data.user);
     await fetchCart();
-    return res.data;
   };
 
-  const register = async (userData) => {
-    const res = await axios.post('/api/auth/register', userData);
+  const login = async (formData) => {
+    const res = await axios.post('/api/auth/login', formData);
     setUser(res.data.user);
-    return res.data;
+    await fetchCart();
   };
 
   const logout = async () => {
@@ -54,43 +71,8 @@ export const AuthProvider = ({ children }) => {
     setCart([]);
   };
 
-  const addToCart = async (productId, quantity) => {
-    const res = await axios.post('/api/cart/add', { productId, quantity });
-    setCart(res.data.cart);
-    return res.data;
-  };
-
-  const updateCart = async (productId, quantity) => {
-    const res = await axios.put('/api/cart/update', { productId, quantity });
-    setCart(res.data.cart);
-  };
-
-  const removeFromCart = async (productId) => {
-    const res = await axios.delete(`/api/cart/remove/${productId}`);
-    setCart(res.data.cart);
-  };
-
-  const clearCart = async () => {
-    await axios.delete('/api/cart/clear');
-    setCart([]);
-  };
-
-  const value = {
-    user,
-    loading,
-    cart,
-    login,
-    register,
-    logout,
-    addToCart,
-    updateCart,
-    removeFromCart,
-    clearCart,
-    fetchCart
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ user, loading, cart, register, login, logout, fetchCart }}>
       {!loading && children}
     </AuthContext.Provider>
   );

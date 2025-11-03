@@ -24,6 +24,7 @@ const Register = () => {
     e.preventDefault();
     setError('');
 
+    console.log("Registering user:", formData);
     try {
       await register(formData);
       navigate('/products');
