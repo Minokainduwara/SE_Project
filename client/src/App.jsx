@@ -9,8 +9,21 @@ import Register from './pages/Register';
 import Cart from './components/Cart';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
+import AdminDashboard from './pages/AdminDashboard'; 
 import AboutUsPage from './pages/AboutUsPage';
 import ContactUs from './pages/Contactus';
+import Footer from './pages/Footer';
+
+// 🔒 Admin route protection
+const ProtectedAdminRoute = ({ children }) => {
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) return <p>Loading...</p>;
+  if (!user) return <Navigate to="/login" />;
+  if (user.role !== 'admin') return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Access Denied. Admins only.</p>;
+
+  return children;
+};
 
 function App() {
   return (
@@ -29,9 +42,6 @@ function App() {
               <Route path="/orders" element={<Orders />} />
               <Route path="/AboutUsPage" element={<AboutUsPage/>} />
               <Route path="/ContactUS" element={<ContactUs/>}/>
-            </Routes>
-          </main>
-          
 
               {/* 🧩 Admin Dashboard (Protected) */}
               <Route
@@ -44,10 +54,7 @@ function App() {
               />
             </Routes>
           </main>
-
-          <footer style={styles.footer}>
-            &copy; 2024 Grocery Store. All rights reserved.
-          </footer>
+          < Footer />
         </div>
       </Router>
     </AuthProvider>
