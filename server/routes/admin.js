@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import Product from "../models/Product.js";
 import Order from "../models/order.js";
 import multer from "multer";
+import { upload } from "../middleware/multer.js";
 
 const router = express.Router();
 
@@ -10,8 +11,6 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, "uploads/"),
     filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
 });
-
-const upload = multer({ storage });
 
 
 const isAdmin = async (req, res, next) => {
@@ -47,19 +46,27 @@ router.get("/products", async (req, res) => {
 
 router.post("/products", isAdmin, upload.single("image"), async (req, res) => {
     try {
-        const { name, description, price, category, stock, unit, discount } = req.body;
-        const image = req.file ? `/uploads/${req.file.filename}` : null;
-
-        const product = new Product({ name, description, price, category, stock, unit, discount, image });
-        await product.save();
-
-        res.status(201).json({ message: "✅ Product added successfully", product });
+      console.log(req.file); // check if multer got the file
+      const { name, description, price, category, stock } = req.body;
+      const image = req.file ? req.file.filename : null;
+  
+      const product = new Product({
+        name,
+        description,
+        price,
+        category,
+        stock,
+        image,
+      });
+  
+      await product.save();
+      res.status(201).json({ message: "Product added successfully", product });
     } catch (error) {
-        console.error("❌ Error adding product:", error);
-        res.status(500).json({ message: "Server error", error: error.message });
+      console.error("Error adding product:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
     }
-});
-
+  });
+  
 
 router.post("/products", isAdmin, async (req, res) => {
     const product = new Product(req.body);
