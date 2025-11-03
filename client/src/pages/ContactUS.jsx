@@ -288,8 +288,6 @@ export default function ContactUs() {
         </div>
       </div>
 
-      {/* ✅ Footer stays below the contact section */}
-      <Footer />
     </>
   );
 }
