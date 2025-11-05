@@ -129,7 +129,6 @@ router.patch("/cancel/:id", authMiddleware, async (req, res) => {
 
 
 
-
 // 👑 Admin: get all orders
 router.get("/", adminMiddleware, async (req, res) => {
   try {
